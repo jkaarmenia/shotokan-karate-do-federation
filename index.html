@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JKA Armenia – Shotokan Karate-Do Federation</title>
+  <title data-i18n="page_title">JKA Armenia – Shotokan Karate-Do Federation</title>
 
   <!-- Google Fonts: Noto Serif JP for display, Inter for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -129,6 +129,49 @@
 
     .nav-links a:hover { color: var(--white); }
     .nav-links a:hover::after { width: 100%; }
+
+    /* Language switcher */
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+      margin-left: 8px;
+      padding-left: 16px;
+      border-left: 1px solid rgba(229,56,59,0.25);
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--warm-gray);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 9px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .lang-btn:hover {
+      color: var(--white);
+      border-color: var(--red-bright);
+    }
+
+    .lang-btn.active {
+      color: var(--white);
+      background: var(--red);
+      border-color: var(--red-bright);
+    }
+
+    @media (max-width: 768px) {
+      .lang-switch {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+        padding-top: 14px;
+        justify-content: flex-start;
+      }
+    }
 
     /* Hamburger for mobile */
     .nav-toggle {
@@ -1324,18 +1367,23 @@
       <img src="data:image/png;base64,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" alt="JKA Armenia Logo" />
       <div class="nav-brand">
         JKA Armenia
-        <span>Shotokan Karate-Do</span>
+        <span data-i18n="brand_subtitle">Shotokan Karate-Do</span>
       </div>
     </div>
     <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#features">Philosophy</a></li>
-      <li><a href="#classes">Classes</a></li>
-      <li><a href="#" onclick="openModal('gallery'); return false;">🖼️ Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#features" data-i18n="nav_philosophy">Philosophy</a></li>
+      <li><a href="#classes" data-i18n="nav_classes">Classes</a></li>
+      <li><a href="#" onclick="openModal('gallery'); return false;" data-i18n="nav_gallery_icon">🖼️ Gallery</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      <li class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button type="button" class="lang-btn" data-lang="hy" onclick="setLanguage('hy')">ՀԱՅ</button>
+        <button type="button" class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">РУС</button>
+      </li>
     </ul>
   </nav>
 
@@ -1346,20 +1394,20 @@
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <span class="hero-eyebrow">一般社団法人 日本空手協会 · Armenia</span>
-        <h1 class="hero-title">
+        <span class="hero-eyebrow" data-i18n="hero_eyebrow">一般社団法人 日本空手協会 · Armenia</span>
+        <h1 class="hero-title" data-i18n-html="hero_title">
           The Way of<br/>
           <em>Empty Hand</em>
         </h1>
         <p class="hero-kanji">日本空手協会 アルメニア支部</p>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
           Official affiliate of the Japan Karate Association. Training body,
           sharpening mind, and cultivating character through the art of Shotokan
           Karate-Do in Armenia since 1993.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary">Begin Training →</a>
-          <a href="#about" class="btn-outline">Learn More</a>
+          <a href="#contact" class="btn-primary" data-i18n="hero_cta1">Begin Training →</a>
+          <a href="#about" class="btn-outline" data-i18n="hero_cta2">Learn More</a>
         </div>
       </div>
 
@@ -1374,19 +1422,19 @@
     <div class="hero-stats">
       <div class="stat">
         <span class="stat-number">30+</span>
-        <span class="stat-label">Years Active</span>
+        <span class="stat-label" data-i18n="stat_years">Years Active</span>
       </div>
       <div class="stat">
         <span class="stat-number">500+</span>
-        <span class="stat-label">Students</span>
+        <span class="stat-label" data-i18n="stat_students">Students</span>
       </div>
       <div class="stat">
         <span class="stat-number">150+</span>
-        <span class="stat-label">Black Belts</span>
+        <span class="stat-label" data-i18n="stat_blackbelts">Black Belts</span>
       </div>
       <div class="stat">
         <span class="stat-number">JKA</span>
-        <span class="stat-label">Certified</span>
+        <span class="stat-label" data-i18n="stat_certified">Certified</span>
       </div>
     </div>
   </section>
@@ -1399,7 +1447,7 @@
     <div class="quick-links-inner">
       <div class="quick-link-item" onclick="openModal('gallery')">
         <span class="quick-link-icon">🖼️</span>
-        Gallery
+        <span data-i18n="nav_gallery_plain">Gallery</span>
       </div>
 
     </div>
@@ -1410,42 +1458,42 @@
        ============================================================ -->
   <section id="about">
     <div class="section-inner">
-      <span class="section-label">Who We Are</span>
-      <h2 class="section-title">Rooted in Tradition.<br/>Forged in Armenia.</h2>
+      <span class="section-label" data-i18n="about_label">Who We Are</span>
+      <h2 class="section-title" data-i18n-html="about_title">Rooted in Tradition.<br/>Forged in Armenia.</h2>
       <div class="section-divider"></div>
 
       <div class="about-grid">
         <div class="about-text">
-          <p>
+          <p data-i18n="about_p1">
             The JKA Armenia Shotokan Karate-Do Federation is the official representative of
             the Japan Karate Association (JKA) in Armenia. Founded with a commitment to
             preserving the authentic lineage of Shotokan as developed by Master Gichin Funakoshi,
             we bring world-class instruction to practitioners across the country.
           </p>
-          <p>
+          <p data-i18n="about_p2">
             Our federation operates multiple dojos throughout Yerevan and the regions, offering
             structured programs for children, adults, and competitive athletes. Every instructor
             is JKA-certified and trained in Japan, ensuring the highest standards of technique
             and ethical conduct are upheld in every class.
           </p>
-          <p>
+          <p data-i18n="about_p3">
             We believe karate is not merely a sport—it is a lifelong path of self-discovery,
             discipline, and respect. Whether you step on the floor for the first time or
             compete at the national level, JKA Armenia walks that path with you.
           </p>
-          <a href="#contact" class="btn-primary" style="margin-top: 8px; display: inline-flex;">Join the Dojo →</a>
+          <a href="#contact" class="btn-primary" style="margin-top: 8px; display: inline-flex;" data-i18n="about_cta">Join the Dojo →</a>
         </div>
 
         <!-- Dojo Kun card -->
         <div class="about-card">
-          <div class="about-card-label">Dojo Kun — 道場訓</div>
+          <div class="about-card-label" data-i18n="dojokun_title">Dojo Kun — 道場訓</div>
           <div class="about-card-kanji">道</div>
           <ol class="dojo-kun">
-            <li>Seek perfection of character</li>
-            <li>Be faithful and sincere</li>
-            <li>Endeavor to excel</li>
-            <li>Respect others</li>
-            <li>Refrain from violent behavior</li>
+            <li data-i18n="dojokun_1">Seek perfection of character</li>
+            <li data-i18n="dojokun_2">Be faithful and sincere</li>
+            <li data-i18n="dojokun_3">Endeavor to excel</li>
+            <li data-i18n="dojokun_4">Respect others</li>
+            <li data-i18n="dojokun_5">Refrain from violent behavior</li>
           </ol>
         </div>
       </div>
@@ -1458,16 +1506,16 @@
        ============================================================ -->
   <section id="features">
     <div class="section-inner">
-      <span class="section-label">What We Offer</span>
-      <h2 class="section-title">Three Pillars of Practice</h2>
+      <span class="section-label" data-i18n="features_label">What We Offer</span>
+      <h2 class="section-title" data-i18n="features_title">Three Pillars of Practice</h2>
       <div class="section-divider"></div>
 
       <div class="features-grid">
         <!-- Feature 1 -->
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <div class="feature-title">Kihon — 基本</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature1_title">Kihon — 基本</div>
+          <p class="feature-desc" data-i18n="feature1_desc">
             Fundamentals are the foundation of everything. We drill stances, blocks,
             strikes, and kicks with precision and repetition, building muscle memory
             that lasts a lifetime.
@@ -1477,8 +1525,8 @@
         <!-- Feature 2 -->
         <div class="feature-card">
           <div class="feature-icon">🌊</div>
-          <div class="feature-title">Kata — 型</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature2_title">Kata — 型</div>
+          <p class="feature-desc" data-i18n="feature2_desc">
             The living library of karate. Each of the 26 JKA kata encodes centuries
             of combat wisdom. Through kata practice, students learn bunkai, timing,
             and the essence of the art.
@@ -1488,8 +1536,8 @@
         <!-- Feature 3 -->
         <div class="feature-card">
           <div class="feature-icon">🔥</div>
-          <div class="feature-title">Kumite — 組手</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature3_title">Kumite — 組手</div>
+          <p class="feature-desc" data-i18n="feature3_desc">
             Controlled sparring tests everything learned in kihon and kata against a
             resisting partner. From basic ippon kumite to free-sparring, students
             develop courage, strategy, and composure under pressure.
@@ -1499,8 +1547,8 @@
         <!-- Feature 4 -->
         <div class="feature-card">
           <div class="feature-icon">🏆</div>
-          <div class="feature-title">Competition</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature4_title">Competition</div>
+          <p class="feature-desc" data-i18n="feature4_desc">
             JKA Armenia fields competitive teams at national and international
             tournaments. Athletes receive specialized coaching in both kata and
             kumite divisions under WKF-approved rules.
@@ -1510,8 +1558,8 @@
         <!-- Feature 5 -->
         <div class="feature-card">
           <div class="feature-icon">🧒</div>
-          <div class="feature-title">Children's Program</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature5_title">Children's Program</div>
+          <p class="feature-desc" data-i18n="feature5_desc">
             A structured curriculum designed for ages 5–14 focuses on coordination,
             confidence, focus, and respect—qualities that extend far beyond the dojo
             into school and everyday life.
@@ -1521,8 +1569,8 @@
         <!-- Feature 6 -->
         <div class="feature-card">
           <div class="feature-icon">🎌</div>
-          <div class="feature-title">JKA Certification</div>
-          <p class="feature-desc">
+          <div class="feature-title" data-i18n="feature6_title">JKA Certification</div>
+          <p class="feature-desc" data-i18n="feature6_desc">
             All grades from 9th kyu to 1st dan and above are recognized by JKA
             Headquarters in Tokyo. Your rank travels with you—accepted worldwide
             within the JKA network.
@@ -1537,8 +1585,8 @@
        ============================================================ -->
   <section id="classes">
     <div class="section-inner">
-      <span class="section-label">Training Programs</span>
-      <h2 class="section-title">Find Your Class</h2>
+      <span class="section-label" data-i18n="classes_label">Training Programs</span>
+      <h2 class="section-title" data-i18n="classes_title">Find Your Class</h2>
       <div class="section-divider"></div>
 
       <div class="classes-grid">
@@ -1547,22 +1595,22 @@
           <div class="class-card-header">
             <div class="class-badge">🧒</div>
             <div class="class-header-text">
-              <div class="class-name">Children's Karate</div>
-              <div class="class-level">Ages 5–14 · All Levels</div>
+              <div class="class-name" data-i18n="class1_title">Children's Karate</div>
+              <div class="class-level" data-i18n="class1_level">Ages 5–14 · All Levels</div>
             </div>
           </div>
           <div class="class-card-body">
             <div class="class-detail">
               <span class="class-detail-icon">🕐</span>
-              <span>Mon / Wed / Fri — 17:00–18:00</span>
+              <span data-i18n="class1_time">Mon / Wed / Fri — 17:00–18:00</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">📍</span>
-              <span>Main Dojo, Yerevan</span>
+              <span data-i18n="loc_main_dojo">Main Dojo, Yerevan</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">ℹ️</span>
-              <span>Focus on discipline, coordination, and fun. No prior experience needed.</span>
+              <span data-i18n="class1_info">Focus on discipline, coordination, and fun. No prior experience needed.</span>
             </div>
           </div>
         </div>
@@ -1572,22 +1620,22 @@
           <div class="class-card-header">
             <div class="class-badge">👊</div>
             <div class="class-header-text">
-              <div class="class-name">Adult Beginners</div>
-              <div class="class-level">Ages 15+ · White to Yellow Belt</div>
+              <div class="class-name" data-i18n="class2_title">Adult Beginners</div>
+              <div class="class-level" data-i18n="class2_level">Ages 15+ · White to Yellow Belt</div>
             </div>
           </div>
           <div class="class-card-body">
             <div class="class-detail">
               <span class="class-detail-icon">🕐</span>
-              <span>Tue / Thu — 19:00–20:30</span>
+              <span data-i18n="class2_time">Tue / Thu — 19:00–20:30</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">📍</span>
-              <span>Main Dojo, Yerevan</span>
+              <span data-i18n="loc_main_dojo">Main Dojo, Yerevan</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">ℹ️</span>
-              <span>Kihon foundations, basic kata, and safe partner drills.</span>
+              <span data-i18n="class2_info">Kihon foundations, basic kata, and safe partner drills.</span>
             </div>
           </div>
         </div>
@@ -1597,22 +1645,22 @@
           <div class="class-card-header">
             <div class="class-badge">🥋</div>
             <div class="class-header-text">
-              <div class="class-name">Advanced &amp; Competition</div>
-              <div class="class-level">Green Belt+ · Competitors</div>
+              <div class="class-name" data-i18n="class3_title">Advanced &amp; Competition</div>
+              <div class="class-level" data-i18n="class3_level">Green Belt+ · Competitors</div>
             </div>
           </div>
           <div class="class-card-body">
             <div class="class-detail">
               <span class="class-detail-icon">🕐</span>
-              <span>Mon / Wed / Fri — 19:00–21:00</span>
+              <span data-i18n="class3_time">Mon / Wed / Fri — 19:00–21:00</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">📍</span>
-              <span>Competition Dojo, Yerevan</span>
+              <span data-i18n="class3_location">Competition Dojo, Yerevan</span>
             </div>
             <div class="class-detail">
               <span class="class-detail-icon">ℹ️</span>
-              <span>Advanced kata, full kumite, and tournament preparation.</span>
+              <span data-i18n="class3_info">Advanced kata, full kumite, and tournament preparation.</span>
             </div>
           </div>
         </div>
@@ -1625,8 +1673,8 @@
        ============================================================ -->
   <section id="contact">
     <div class="section-inner">
-      <span class="section-label">Get In Touch</span>
-      <h2 class="section-title" style="color: var(--white);">Start Your Journey Today</h2>
+      <span class="section-label" data-i18n="contact_label">Get In Touch</span>
+      <h2 class="section-title" style="color: var(--white);" data-i18n="contact_title">Start Your Journey Today</h2>
       <div class="section-divider"></div>
 
       <div class="social-icons">
@@ -1641,7 +1689,7 @@
       <div class="contact-grid">
         <!-- Contact info -->
         <div class="contact-info-block">
-          <p style="color: var(--warm-gray); font-size: 0.95rem; line-height: 1.75; margin-bottom: 8px;">
+          <p style="color: var(--warm-gray); font-size: 0.95rem; line-height: 1.75; margin-bottom: 8px;" data-i18n="contact_intro">
             Whether you're curious about classes, grading exams, or want to bring
             JKA Shotokan to your school or community — we'd love to hear from you.
           </p>
@@ -1649,15 +1697,15 @@
           <div class="contact-item">
             <div class="contact-icon-wrap">📍</div>
             <div>
-              <span class="contact-detail-label">Location</span>
-              <span class="contact-detail-value">Yerevan, Republic of Armenia</span>
+              <span class="contact-detail-label" data-i18n="contact_loc_label">Location</span>
+              <span class="contact-detail-value" data-i18n="contact_loc_value">Yerevan, Republic of Armenia</span>
             </div>
           </div>
 
           <div class="contact-item">
             <div class="contact-icon-wrap">📧</div>
             <div>
-              <span class="contact-detail-label">Email</span>
+              <span class="contact-detail-label" data-i18n="contact_email_label">Email</span>
               <span class="contact-detail-value">info@jka-armenia.am</span>
             </div>
           </div>
@@ -1665,7 +1713,7 @@
           <div class="contact-item">
             <div class="contact-icon-wrap">📞</div>
             <div>
-              <span class="contact-detail-label">Phone</span>
+              <span class="contact-detail-label" data-i18n="contact_phone_label">Phone</span>
               <span class="contact-detail-value"><a href="tel:+37495130222">+374 95 130222</a><br><a href="tel:+37495585754">+374 95 585754</a></span>
             </div>
           </div>
@@ -1673,8 +1721,8 @@
           <div class="contact-item">
             <div class="contact-icon-wrap">🎌</div>
             <div>
-              <span class="contact-detail-label">Affiliation</span>
-              <span class="contact-detail-value">Japan Karate Association (JKA) — Official Member</span>
+              <span class="contact-detail-label" data-i18n="contact_affil_label">Affiliation</span>
+              <span class="contact-detail-value" data-i18n="contact_affil_value">Japan Karate Association (JKA) — Official Member</span>
             </div>
           </div>
         </div>
@@ -1683,35 +1731,35 @@
         <div class="contact-form">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="fname">First Name</label>
+              <label class="form-label" for="fname" data-i18n="form_fname">First Name</label>
               <input id="fname" class="form-input" type="text" placeholder="Ani" />
             </div>
             <div class="form-group">
-              <label class="form-label" for="lname">Last Name</label>
+              <label class="form-label" for="lname" data-i18n="form_lname">Last Name</label>
               <input id="lname" class="form-input" type="text" placeholder="Hovhannisyan" />
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="email">Email</label>
+            <label class="form-label" for="email" data-i18n="form_email">Email</label>
             <input id="email" class="form-input" type="email" placeholder="you@example.com" />
           </div>
           <div class="form-group">
-            <label class="form-label" for="interest">I'm Interested In</label>
+            <label class="form-label" for="interest" data-i18n="form_interest">I'm Interested In</label>
             <select id="interest" class="form-select">
-              <option value="">— Select —</option>
-              <option>Children's Program</option>
-              <option>Adult Beginners</option>
-              <option>Advanced / Competition</option>
-              <option>Private Lessons</option>
-              <option>Corporate / School Program</option>
-              <option>Other</option>
+              <option value="" data-i18n="opt_select">— Select —</option>
+              <option data-i18n="opt_children">Children's Program</option>
+              <option data-i18n="opt_adults">Adult Beginners</option>
+              <option data-i18n="opt_advanced">Advanced / Competition</option>
+              <option data-i18n="opt_private">Private Lessons</option>
+              <option data-i18n="opt_corporate">Corporate / School Program</option>
+              <option data-i18n="opt_other">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="message">Message</label>
-            <textarea id="message" class="form-textarea" placeholder="Tell us a bit about yourself…"></textarea>
+            <label class="form-label" for="message" data-i18n="form_message">Message</label>
+            <textarea id="message" class="form-textarea" placeholder="Tell us a bit about yourself…" data-i18n-placeholder="ph_message"></textarea>
           </div>
-          <button type="button" class="btn-primary" style="align-self: flex-start;" onclick="handleFormSubmit()">
+          <button type="button" class="btn-primary" style="align-self: flex-start;" onclick="handleFormSubmit()" data-i18n="form_submit">
             Send Message →
           </button>
         </div>
@@ -1726,21 +1774,21 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZ4AAAIUCAYAAAAqv0osAAAACXBIWXMAABcRAAAXEQHKJvM/AAAgAElEQVR4nO3df4wmR33n8er1LgYbmAFBLlLmssPensAgsWNidEQct+OLhCMlxGPujyAS4TFCPqGg7FhIAXGnePZOFyXcIc9G5I/zRecZJBD/JJ5NFOngIjwjDolTDH4GBXwkc8M83PwRhQjmMVn/Xj+nGn97XNvTP6r76a6nqvr9kh7t2jvzPP30009/uqq+XZWMx2MFAIArp9jTAACXCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgASzs7h0ssp+AdiTj8Zhdid7Y3TuYV0qZj1ml1IK8f/33Cw33xY5S6lD+PpC/78tjcP7c3GHF7wO9QfAgSrt7B2mgLBohc3HK73U7DSIJo61Idz9QiuBBFHb3DtKQSf88G8j72pEg0iG0df7c3L4H2wR0iuBBkKRFsyQho/+cieSTHEoIbUoQ0UWH6BA8CIaMz+iQWZ5gLCY02xJCm7SGEAuCB17radgU0d1y6/pBSwghI3jgHaMbbdmDggBfXZUA2uz7jkB4CB54Q1o3q9MYs3nNk18/+vP0k986/n83DfeVunYt/xduvVVdPzt/9NfxLa9V18++Vb10y+vVc2edN8qGRiuIrjgEgeDB1MnNmasuWjdnfrSvzgy/q2764d+qm773XZUMDlTy4+dafY3xW1+vxj/3ZnX97e9Q13/+n6vnbvtFdf3WN7b6GgU2JIAo04bXCB5Mze7ewbIETmelzzdd+7F69be/qk4/+R116onvqeT7T03l7eowuv7ed6sX37bgIoh0QcIqAQRfETxwruvA0a2am7/1l+rM176mksf/zssP+KUPvFO9cMd71LPven+XIUQAwUsED5zpOnBu/fqX1ZnHv6lO/fl3gvpQr3/oPeqFd71XPX3Hr3T1EgQQvELwoHNdjuHo1s2rv76pTn/pK62P1bimu+NeuPtX1TPv+2BXrSAdQMsUIWDaCB50xqhSu7ft19CBc8ujD6ubvvzN6D7A8RtvVi9++C719F0f6SqArkgLiHuBMBUEDzqxu3egA2el7bLomAMnq+MAGunP5/y5ufW2nxioQvCgVdKtttb2LAO6Ou2Wr3xBnfn8n/XuA0sD6KcfXOni6el+g3MED1ohsw3oVs6ltveoLhp41ZWN4MdwJqXHgJ797U+qZ257X9tPrVs/a+fPza06f1PoJYIHE5MlCTbbrlbT3Wq3/tf/pE597f/yIRl0KfZP7//dLrrfaP3ACYIHE5GxnAfb3ouv/R9/rM788Z/0vpVTRHe/PffpT3RRgs3YDzpH8KARqVhbb7tEWo/lvO6hT9HKsfTiR39JXbvn4120fq5K64fKN7SO4EFtu3sHSxI6rVas3TzcUbd88tO0cmoa3/Gz6unf+lQXE5TqCUiXzp+bG3T9HtAvBA9q6aprTRcQ3Pzgw3wYDdH1hpAQPLAiVWv65HN323ts5uHP9OK+HBee/50Pq3/85Y918Uob58/NLXv3hhEkggeVZDxns4t7c1738H8Ibm413+m530b3/14XW7ktXW+M+2AiBA9KSan0VtvjOTp0Xn/5E97OHh26DsNnR8KHkms0dopdhyJSREDoBEh3XeouzA7oVu9ALkiARgge5JIlDB4ldMLVYfjoY2KL8EFTBA9OkNB5pO09Q+i45yB8KDhAbQQPbtBV6Gj6xlBCx72Ow+cRwgd1ETw41mXo6BMfsxFMjw4fPQ1RRwgf1ELw4EiXoaNPeNynM32v+uyXjm7U7QjhA2sEDzoNnVse/4ujEx78oJeX0FMTdeQRWY8JKEXw9FyXoaOXNbj59z/f913sFT0P3i1/9AdHhR4d2aTaDVUInh6Tq9NOQkd77X/+DBN+ekgXeOgZIzpCqTUqETw9ZSze1onX/ekaFWwe09MUdTjeMyMtn9kY9hXaR/D0kJwQNtu+OTT1mie/rs58/s/6vpu9p8d7dHdoR85Ky4fwwQkETz9ttb1MtenVf/i5vu/fIOhuUL20eIf09Dprfd/POIng6ZndvYP1tmeZNh11sX3/qb7v5mDoe6t05WGH7t3dO1jp+37GjZiduke6rGBTUsX2ul//aN93c3D0InJPbXyxi+WzTXeePze3FfWOhDVaPD0hxQSdhY7WcbcNOnJUYv2VL3S9eyk2wDGCpweMYoLO6IICpsQJly4G6bDQQKVl1pHvRlgiePphvctiAu3mP+n8ihkdu+XRh7t+iQu7ewerfI4geCIn4zp3d/kuae3EQc+n13GrR3uQaXVA8ERsd+9g3kU5K62deDho9WjrjPf0G8ETt/WubhJN0dqJi6NWj+72pcutxwieSMm9Exe7fne0duLzmq980cV7ukSXW38RPBGSLrbOryj1lTGtnfjctPm/upy92kSXW08RPHFa67qLTbm7MoZj+r6eV3/7qy5eVHe5MatBDxE8kdndO1jquootpa+MEadX/bmzSV4fZAmF/iF4IiLdFk4mZdTze7HWTrz0khYOigxSTCTaMwRPXFa6vlE0debb3+jXnu0hh12pF6Wljp4geCIhrR1n/eW67BZxu+kbf+Xy/dHq6RGCJx5OCgqUdLMhfnp5C4fdbWeZTqc/CJ4ISPn0va7eCd1s/XHzt/7S5Xtdoby6HwieODi9Ujz1xPci3pUwnX78f7vcHzOUV/cDwRM4562dH+2zwmiPTOEGYVo9PUDwhM9pa+dV/4eigr7R8/E5RKunBwiegLlu7Winn/xObLsRFW4aft/1LqLVEzmCJ2zOq4BO7TqrcoInTj/51643RLd6lvn840XwBEquCJ22dpTc0Y5+Sf5mKhcbdLdFjOAJl/MvpuO+fnhiSsUkZ2X1XESI4AmX8y9lco1qtr6a0kUHwRMpgidAciXoZE42000//NuI9iLqmNJFx0Vmro4TwROmqVwJnvqHv49g16GJKV50MNYTIYInMFJC3fmS1nmSv/9RRHsSgWDW6ggRPOGh3xvO3fS9705rp89QZBAfgic8U/sSTmH6FEDR6okPwRMQGWh1XlQATNndzGQQF4InLHQ5YCqSp65Ne8fT6okIwRMWvnyYCg9mrODYjwjBEwi62dBzdLdFhOAJB91s6DtaPZEgeMKx2PcdgN7jOxAJgicA0sVwoe/7AdMzfuPNPux9WjyRIHjCwBcOUzVemPPhA5hh7rY4EDxhoIsBeBnfhQgQPGHw4ss2fuvrPdgK9BzBEwGCx3MyKagXZdTjn3uzB1uBaRj/jDefPcETAYLHf/RpY+peetPP+PIhMM4TAYLHf95c4V1/+zs82ApMw/iW1/q03wmewBE8/uNLhqm7fvatPn0IdLcFjuDx31QWfcvz4m2/EM5eQ6tefNM/9WmHznuwDZgAweMxKSzwhmcnHzj0wpu9OhS9uRhDMwSP37zqZtMnH0/uYIdDL/3rf+bd7qbAIGwEj9+8+3J5cgc7HHpp3sueLbrbAkbw+M27LxeVbf1z/ax/LR6KbsJG8PjNu+ChwKB/nn/be3x8z7R4Akbw+M27q7rnf54WT5/oaZI8KyxIETwBI3j8NuPb1l2/9Y1eDjajGy/d/nZf9yzBEzCCx1M+V+28eMe/8GAr4MIL73qvr/uZZeADRvD4y9v15V+47d0ebAVceO62X2Q/o3UED2p77uwFlkjogZc+8M6jrlVf7e4dMHVOoAgef3n9pbr+Xlo9sXvhDi+r2RABggeNPHPXb7DjIqZnqHj2Xe/v+25ARwgeNKJLbKlui9dL77/d6242wU2kgSJ4/OVtcUHqhYu/5MeGoHXP3vXrIexU778jyEfw+Mv7q7lr7/sQk4ZGaHzHzx4VkABdIXgwkRc/fBc7MDLPf+DX+r4L0DGCBxN5+q6PsAMjosvkdUsW6BLBg4noAejrH6LsNhbPf5jQQfcIHkzs6XvuZydGgNYOXCF4MDFdWv3CJxgXCB2tHbhC8KAVeqyHCrdw0dqBSwQPWqHHel742L9hZwbq2d/+ZN93ARwieNCaf/zljx3dA4Kw6MlAn7ntfXxqcIbg8dcgxI1+9r6Pe7AVsKW7R6/95gr7C04RPP46DHGj9ZXzix9lKp1Q6O5RT5e2RsQIHrTu2j0fZ72eAOhJXnX3aMC2+v4ZhorgQet0ocHTn77MjvXYURfbv/13fd8NmBKCx19BjvGk9CST3Nvjr+c+/Qm62DA1BI+/ghzjMf30gytHFVPwix6De/qOX4nhUwn64qzPCB5/BR882k/v/11KrD2ix3We+s04utjOn5uL4jvSRwSPp86fm4viau5ovOe3PsWsBh7QFwA/feAPYnk7Qw+2AQ0RPH4bxfAm9HjPs//xMx5sSX/p4NcXAAEsZ21rP4zNRB6Cx2/R9GHr+3ueu8ws1tNwFDqf+/3YVhUleAJG8Pgtqi+XnoSS8HFPtzYjXMqa4AkYweO36L5chI9bel9HOg8bFW0BI3j8FuWXi/Dpnu5ee/azn4x5qQNaPAEjePwW7ZeL8OlOOqYTyb06uWKp+uwrgsdjsX+5dPg880eXKbVuUaSFBFk7fm0O6iJ4/Lcd85vT4w/6RMmkopPT9+k8tfHF2ENHMb4TPoLHf9F/yfSJ8qn/8t+P7qpHM9c/9B711IOfj+k+nTIET+AIHv/1Yup3fcI8/Pf/jYlFa9Jda3qsbHT/7/UldBTLIYQvGY/Hfd8HXtvdO9BTCP+gT+/5NU9+Xb36Dz+nku8/5cHW+Et3renZCHrQtWYanT83N+vP5qAJWjyeO39ubr9v81LpcZ+jrjdmti6kW4Y/+eyX+hY6im62OBA8Yehd18JR19sDay9XvVF4cEy3cq498tDRkhM9RTdbBAieMPT2y5a2fvo+9qPHcp7/nQ/3tZVj2vRnU9AUYzwB6OM4T54zP9pXtzz6sLrpy9/0b+M6pEP36bs+0qfigSKM70SC4AnE7t6B7tvu9aVuqi8BpEukn77nfpaofsXG+XNzy75sDJo7zb4LxhbB8zJ9Itblw2fuiS+AdJfa9aV/qZ656zcInJMY34kELZ5A7O4dLCilnuj7fshz07Ufq1u+8gV1+n9uBVuCrYsGnv/Ar6ln3/V+utSKvYHlruNA8ARkd+9Al1af7ft+KHPL43+hznz7G+rUV59QyY+f83dDjdbNc+/71b4XDNjYPn9ubtH/zYQNutrCoit6LvV9J5Q5mpFZP+43QuiJ73nTEtKl4dff+271wi/8q1jXyekK1WwRocUTELrbmrt5uKPOPPlX6vSTf62Sv9l3FkQ6aF66/e3qxdveqZ5/23sYt2mObraIEDyBobutHXpc6FU//K46/eS3VPL0NXVqf18lT11TyeN/1+j59RjN+PW3qpfm59VLb/on6vrZt6rnf/4djNe04+r5c3NLMbwRvIyutvDQ3dYCHQhHXV0F3V26ZPv0P/y/0hciWJyhmy0ytHgCw82k6JmRUmqebra4MGVOYGTS0KgXhwMMm4ROfAieMK33fQegN9b4qONDV1ugdvcO9FXgTN/3A6K2c/7c3AIfcXxo8YSLK0HEjmM8UgRPuOhuQ8yG58/NcYxHiuAJlBQZbPR9PyBahE7ECJ6wrfZ9ByBKI7rZ4kbwBExaPVf7vh8QnTVKqONG8ISPK0PEhNZODxA8gTt/bm6LVg8iQmunBwieOKz0fQcgCrR2eoLgiQAVbogErZ2eIHjisSpXjECIhrR2+oPgiYS0evjiIlSrtHb6g+CJy5pcOQIh2WaWgn4heCIiV4wUGiA0HLM9Q/BE5vy5uU3W60FArpw/NzfgA+sXgidOyxQaIABDpn3qJ4InQhQaIBArFBT0EwvBRWx370B3YVzo+36Al66ePze3xEfTT7R44kaXG3w0kmMTPUXwREwGbelDh2+W6GLrN4IncufPza0xiSg8ckUmtkWPMcbTA7t7B7NKKV1wMNP3fYGp2jl/bm6BjwC0eHpAujUYyMU0jTgGkSJ4ekK6Nx7o+37A1CxLmT9A8PSJjPewfAJcuywzagBHCJ7+0fNi7fR9J8AZfb8OlZW4AcHTMzLes8j9PXBgh/t1kIfg6SHCBw7oY2uR+3WQh+DpKbm5lKtRdIHQQSmCp8dkwPe+vu8HtCoNHZY6QCGCp+dk5UfCB21ZIXRQheBBGj7c44NJ3ccS1rDBlDk4trt3oE8a97JH0AChA2u0eHDs/Lk5XWxwhT2Cmggd1EKLByfs7h3oAHqEPQMLhA5qo8WDEyg4gAVdvXYPoYMmaPGgEC0fFKBkGhOhxYNCcjV7OzMcwLBD6GBSBA9KyQlmkYlFQeigLXS1wYqsYqpnOrjIHuulDal6BCZG8KCW3b0DvabPJfZar1C5hlYRPKhtd+9AL2GsT0Qz7L2oDfVy1XStoW2M8aA2mVx0gXGfqF3VnzGhgy7Q4sFE6HqL0gOyTDrQCYIHE9vdO1iUrrez7M2gHa0YSisHXSN40Aqpelul9ROsy+fPza32fSfADYIHraL1ExxaOXCO4EHrpPWzopR6kL3rLT0bxSpjOZgGgged2d07mJfWDzed+mVDVgo97PuOwHQQPOgc3W/e2GZpaviA4IEzMtv1KgHk3I4EzlbP3jc8RfDAOQLImaGM4zDdDbxC8GBqCKDO6C61dQIHviJ4MHUSQMsUIUxMT3OzRpcafEfwwBu7ewcLUoZ9L5+KtZEUbujA2Q9km9FzBA+8I/cBLUkIXeATykV3GoJF8MBrci/QigRR38eCdqR1s0nrBiEjeBAM6YpblqW4+9ISImwQHYIHQZKW0JKE0GJEi9KNZIlxXSCwRdggRgQPoiCtocUAg0jfazMwgoZZBRA9ggdRkhbRQuYx7TEi3W22bwTNgPnS0EcED3pFWkaz0ipSEkyz8vdJ7iMaSaAoCRf9OJT/t0+XGfAKggcoIGXdCwX/TGsFaIjgAQA4dYrdDQBwieABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4gJqSJFlgnwHNETywwsn2ZUmSLCmlnkiSZD9JkrUkSeZ92K4YJEkyy/7sB4IHhXTYJEmyniTJoZxst9oOoCRJVpMkGctjS/7b25Abj8ebSqltpdRZpdQlpdQPZLsXPdi8ICVJspwkid6vP5H9qY+52b7vl5gl4/G47/sgGPqEPB6PB21tr3y59Uk++6eSP2cKfvXyeDxebWkb1pRSyzmvNVRK6ZPRepvvuQ2y336S81Q6kFZ82966OjjOssfYvDy0iwW/pj//5fF4vNX6G8TUETyBSJJEnwguKKUeGI/Ha7ZbbVyJL2a+/BcmfOdX5cRwOOkelBO5fk/3FvyIPqGv+nISkn36WMmP1PqMfCEBke7jRdvwMS5g5jOPsosXW/eNx+P10PYlyhE8gZCuiLtla/WJWH8Z942tz2u5TPqlr7IjJ6iJw0e9/B73pQuriH7fS2293gTbuSbdbGVaaxW6pLs8jZe7IkGU7m+zRZxe0BS1WNq0MR6Pl0PblyhG8ARC94MrpR7xcGt3xuNxK2Mylif01l6vKYuATL1lPB7vN36hybZRtziWJDQGNVov5gWOT4JsRSIfxQXh0CeEkYOt1a2Ky9KVZuOCLgho6bVtutIuSAhPhXRH2YSOMsYxnNGBowfn9SC9UuohuVjRhSEDywKITQfbOpLj67KM5dh4iMrKeBA8gZDupa5OChtKqXuUUm8Yj8eL0kVUp6poxfwPqYbbkuqklRolslPtQrNkG3rDqjEpXZot+6l2kErALMpzrMq+Hkjg5I2V6TG9x6RVWUjGU2zDoI6hdN3dPh6PZ8fj8ZJ0F9uGuMoeZwgXXW0BkRP4oKWxm3ScaDM7ZqLDQq6WrY3H48T4fR1cD2Z+d0deb71ojMZi0D71hmmN89ToZrtHSq/Lnsvs1hpJiy+vS8xsqbQxplI6ZtJit+7IqEw8EcI6dGu+n219YdTCdmHadPDwCOchV33jhg990tShMF/0nmXwuO7zb+U8x2HJz6/nbYOcYGu9lsuH5fZZb2ON5+visVyxbVsTvOaWtAxnS55/tcHzLnGuiuPR+x0Q4qPBSWHT5ksr3WtlgZF9HMoJ5MQJxjLAVjO/Y3MiXp3WZyaBabNfFms85yQn+EkemxXbNd/gWFgru6gxnnu55nbvEzpxPXq/A0J8SEAM2joR1HhO87lzAyfznDbPt278vE3wWJ/UC7ZpXl5HPxZq/N6s7UmywfZMI3jWLLatquWahkJp66bBc97w3H3/vsf4oLggQDK+sSiDtVkjqRaaT7vVLKcfWbe8qfSKhNmqxTiLzTjMvY6nR9mScaTHpNorna5nYEzZs5RTEGFbAFCrwk/KrS/X+Z2WVBaqSAn2oozPZQ3l5s503LGygMS4QbVqjPL4ubl5NE4UFwROTpDpSXEg4wtHJ/zM4O1O+u/yM8f3l0j5bdGsAakN6eayvi/FcvD4+L4cy+KCOyeZwUBCbknGyqqCNh3w35RAqSoqGMqJuMl21R1ob2oon2OtE7pMjpqWM2+ln4Hsz30jTLaNIgnzWExb1GX7cCSt9LVp3ySMbhE8EasIlGE6yF8ROjsy/1jtk73lyfR4ShQXwZPZvkUJ7arQtdV4ehc5MW/WDJ+RUQU3MFqYg2xrs6vphuTCZ7MkxK/Kv1cF/YYcZwRODxA8katR/ps1kivjxneLWwTPDS0E18FjvO68XGlPcsd+49ZOZluWpUWWjoUcSoti3wiUgU8naOlCe6Lhrze+sEG4TvPZRW+t7j05LV59Vo3dNJlOptasyXIiXymbU066D5ck+Ore1JhqZfYGaTEFNa6hx4KSJNmpOfHsxBc2CBfFBfGrc6LelhZFK7NOW5yIsle5lVOi1Nku40ZIq5aIXHUvFBRtVFnu+SJmdVosG1KgQuj0FMEDZVQRLTru8siGYmvVbZm7720q8I7onxuPx7qFdGfNufEuyiJmfZ3WxWb/bsuUOW1d2CBQBA+UVBG12r1jOSFlVwPea0boDBteWZ8YoLf0kBR14KSl0BfJQzsY44GqO25iqar1Mmz7qlcqw9YzRQJNZ7JeaTjWo+TeJNWzNWQqW6u0cpCixRM/m+6rLoKnarym1Zm2jZsTzdDZaFgGPt/CTMj3yr0vfVH1eW/3aF+gAsETv6oTQustD1H1uq11s8kJfitTzDCaIDxWW5oBnMHzV9DFhmMET/yqKq26OiGUBc+oaskAWzKe82hOUDQawJaxqbZuKD1rOdYVg6obX7lPB8cInvg57fJSr3RVlY2PTPyastjcoGCp7KsTBJtNYUCdarfog8eyjJzgwTGCJ35176VpQ9XJdqLgkYXmnih4b8OmBQXyvFUFBRvy/lwsQ94qWbF0WSZCbXMZ6arPe4fCApioaouYxeD2Tp1JP2soOxENJ+lmk1ZOWZguNexiW8hZNTVrO61Uky60ptPEdM7o4luUVu9ipjvywSRJrjbtksyoCh7Ky3EDgiduVcHT1eB32etO+pplofNAk/tEjDLsMjvm+5JpYu6zWCL6OGR1l1TToJfurHkJkVn5u9nFVdW9mUdXAO7rC5QJbxyuOs4IHtyA4ImUMf1/kVFH4ztLJRVho4qT0CQzF2xMMAXLakWg7eTN9aZvutX365SEz9U0CGW/PJokyZWimRTkM1swQmVR9kmdOdDq0p/VYzpEm9xELDNElFUAbtDNhhP6vhJerA+LNe07WUK6YnnolZLfq7vstvkYTLC9S1XPbbHS6mJmtdXDnGW9s+9vS/bV1hSXv84+rFdkNd5X1bZbrYDLo18PlkWIUM7iXFlDOcl0MXNA0eseL/hW8LtrBRVqVXJbI5bbW7UiZq0xkLS6q6g7TYoXqsaRpkm30KxverVYxuKKzHsH3HjsEDzxsTjB3dPWfTQmmSCzaAmG24vGX9JuqAYvOZLQaTquk73p1NT6SdPigmDqxuNxUuP9lBV6jKS1QzcbTqCcOjIW071c6SJ0RNHr3lcRDk0GnxuHjvGaeSfNkWxv61fqchKOYv42ucgoG3tq1ApFPxA88VkvuaLe6KrrQwaZ86qqNiwGreuGx0ShI7NH5602mnbbdVaFJaHfZL0fF6zmU5OLm7KF76ouNNBzdLVFpKKLrbP+9pIupA2bGZprdkG1ETp5U+I4HY8o2Y4qIyOoD2uEtll+vZDZ12mFo9WqsyVdbCMZE+uqRY1IUE4dCRnozQsdFyeDvEk1rUJHSReUbH/ZQL/qKHSmsua/3jdJkuxXjMUNjaq3gQ+tCNmHeaGzIzfvdnFDMiJDiycCJdVZbd2ZXqigsumBJvfUVFSZtR06I1kAr6zLqHPGmFxa8TeQx5ZvJ/HMqq4pL+8yadkAABfQSURBVPYjwkLwBE5OXIPMyXpb7iPp9Co+57WHEnSNX7ckfO5s+rw5obNh262E432YFzobcpzRykEtFBcETE7Sm8ZJeltO0IsOQmc289pX5N6giV5XWjQLxkB3WmXWZEG3WRmPSENHnyjfwpr/9eSEjrkfCR3URosnYDJGcFa61NZcjlMYrZ2BtB5aH3+QYD2c5OSWJMmWFC5wZd6AfAZPGNMdrbEfMSmCJ2BtnJiBKukKr7QS0RaCBwDgFGM8AACnCB4AgFMEDwDAKYIHAOAUwQMAcIrgAQA4RfAAAJwieAAAThE88JKekidJkjU95U2SJGM9PZD8fU1mbAAQKGYuCJCe/DLm6UtkipaylVSVTCLKJJVAgGjxBESfkPXVv1LqJ0YrYFVmio5N1WqkF2V2bHhMJpMFbkCLxyBfkryHklmYpzYzr4TLQGajztqRq/9o1rlPkuTQcins2yN730fHWywtuSRJ9MXB3fKf27Jc9zrLY/db74JHTuALRrjoFTRnC5bzzXNFpth32tWlxzaUUpdKfmRHVuiMoguuYJnqPI0XiPONbr0aS2Gny16vu3h/subOqlzYtPbaBQvIaVfG4/HKJM/dNRlLTFfS3Xf1WfRBtMFjtF7SYFmQh81VdJWJV9qsS9aVuVjxa5djWYK45ISVFVPwFH3GnY9nGWs7tfracqH3k4J/9vqzK/g8vA/MEAQ/xiPVT4sy1rGeVkEppX6glHpMriAvyQHURugo+YI+prsRHPZh23QnLTvYDlf6WDRQNFanj92BFF10pWh/p6/dqJJQWuA7Bf/s7UWSPqcUXARckpYpJnA6pJ0nV0/LRldZVQuga7rvWofeooNxBpsutLwr1lDZBk8U4zvStVjW3asvmh5NkuQtUxj/mZEup8WGvz8oeG8X5bvjY6un7L0+qD8vKiqbCyp4pIpp2mGTNSPbRfVOhm4NNv1y6t9LksTmRzctf66MPvFtTqNIQVoxKzWO6+UptRQuTvJ5lliTC0nfVFWKrsgDDYQWPK5CZyhX3PuWA9xnPb5ymwrpmlmX/VK74KFGd0Ybx8RFuYrVn/tK1xVX0j27LI+QWqnzDbtAy1oPF6RrPDWSe7icF/BkVIUhNzFPILTg2e4gfHakK2BfrnwH6QEv/bw2weNCaF1Ky9K9osfclsqulOVEvCQnqPkaFYZtOyvdWRvj8bj18TI5nlaM8uK6dowqq7Z1cpJPkmSlZrjOyJjsYtOLlkkZla/oSGjBY1PZVWbbCJlBYC2U0Mqk04HwCzI4vZ654TOtOFz08Kr/Xt1910b4GOOSdU/ApqEEznqHJ+LBBIGYK1MeXpc+bvYdjZ9mrbRYiIQcIY7x2B7IQ/n5gYSMD4P/vSAtGPMkm17Flt2H5BsdPvq4adTCkH2wKgHc5CSWHr/rodwgK+85vZho+r5NzsdP5ULBZuzmYuxTV3UpqODRX0Dph6+6cnR9M+Wo65ODbp21MIjuSpdlvyO5mCi7J+uBkq7J9P4um6vaValesj6O5P6j5YYt85GE1WYIFVPGSXpBwqZu0GxIS+6Jkp9Zn3Az61qt8T7WIruFwZnQWjxKroCqrpxXHF+JeNllJyeGRePEYFrtsKuxjS9jOr3KQB6H5vaW3Gx5T1VxgIw72JxcZiRES09+xgl44mKBpi2sKZmfoCvteByt5IJq1OGY1glSEFOnVX6v/E40M4a4EmLwbHnYZeNNV0j6RTAG94voG2DvG4/HrV5RSneLbXFAWj04MP4cWH6Jcwd/LUJnvmY5cmE3j+zrFcsClKFRwFIUUDP6OUPpWpMeiLcYoWvbUjBDp6xsec3xCb1JyE1zLCpYIQaPzYfrupvCpxZPWbdF1pqMY7T5hanqH9+RFukN+0xOQEtSzaSktVPW5ZR3ktu22L61ml1Cua+v91tFwG6nVZL6T/MEKvPuFU34ulh0jKfTQPlUFCOfz4oUEiwZ870VyVYMllWPuWzt2NxLdUU+n+znro+nJ7q4kIuWnqsttIfe7LJHW+9HDrLS15LHfNf7UL6ENttS96FPcrMtbud+yesfFu0raVnk/c5qwc9b/6zxO0sW+yZtlaxKF0rRc21lHusSuoW/Y/l57qefh9zEmHb1HWb241LLx5fNsb5ic6xId3je76/X2A8nfrbD79ZsZv/mPTaNnx2U/Jyz7Q75EeTG+xY8Hby/RePqca3iZN5G8Cy0tN0LFa+1XPH7RV/ovBNW3s+VBcVsZj8eGgGzbBsYLX7GyxUBXXZyq3y/XR3rxjGTG0Al4Z57Qi45tju/mDO2YavO+5XjvCyoBi63P8RHcBtt8wVx/WWc4PnnjYDZ7DhgzMe+XEW3EjjG+1mpeN3Sq+WKVt2KxedS+PxyslhJZysP4Ti2eBS2IDv47LKPrZznKGo5FIXOep2Q6uhzqHrfh3nHi8Xnd+j6YiakR4hjPFWKZsL14vWkL3yxxSUayozMqjC5stvvsFS3bKB4e8KB4qq5s0Zlzy/jWFMb/JVZCxaMRxuzM8y0MWeYbNtDNX9N38eykqnC28w5pk/MAmExP52TueikOKTstUZFFWtye8N9JUt3zEgBTzRLlbQpxuCpdXIzBrXnjdUR6zxHk5Np13PObch4h0/3glSVJM9PWIbtRUWRMd1KOv1PWyFjGslJfm3SwhA5+Tadm24lLQAoGJw3q9eK1vvJ2nBx3MrntF5x8bdStn91IYFFCfaD8jPLlFwbQmuiWTRxT3QBFDxPWlab7RoYGIO7Nt0hVq+Xee2qPuVJHit1t6fFz6aoQGBQ8XtVA7Zjs0upYBxhrWSbVuTkuiV/ttIFItu96KCrdJBOnNlGV6GxzTbjSEWPTeN7Mp/zPVrPvGbZmJb5cNI9VVIAkT6sv0cWzzWWY6PVru2QH8Ft/KTBI79f1Ld8w0HXYfDMWmxDk0ftbeng88meYNYqxl5sQmct8zurZZ+DPOdyRcBPfIKz3PZJTuytVK5JUK+1cMEzSGcqyDx/dh/ULSQwH6UFKC3tj7zjp3L7WzoOOn9/ITzC2+DqMMirgEpbN7ZXpAPL15roZG+EYHpCODRKdFeNwfBFi3LPsYzf+PIZrdgMfFt8YU+0lkoGhDflYbOvNlt6r12ETyvbVmMf2zxyj62ck3jhSbtGq6ezVrvFNjT6PluWZB/vIx8KXKb5CG+Dq8NgdWx/1Vv4sHytiYKnxnuu8x6CqaSxaPXllu1alG1bf8YtvY9Zy+6WgdHdt1ryubZ9j062lLzJo+h+qmyJelXlom0Itl7ZZlkG3TgQLJ4/+1q97XoLb4Orw2Az54a7YIPHolsg+wiijLNp6Bi/P2m30WFHx2b2UfYeij7bVoNnfGP3bt6Y5rpcpJWFwongKRhrK725tWYLsbWbmy1C4bBOEJifscU+KXvN1j/rEB7hbXA79z9UPfZrvFar3SI5X5am78Hb5rxF6OQWCmSeY9Jxsqn3tZcET+kMDB1uT1mY5wVPWbdV4die0RuxZhR9FD3PvnwPZo2Tfa2WgmXYlT6nsc1FLdtly/3S6HiP7RFjOfWkhjWn9e+kjFfKPSdZgllPXLmkp+nveinnOmSesqJJNUfyBa7cXilNPVqCIJ3DTP6pbJllZTEHnA+s158x7g9KT8z7xkKHXX/uZfvwknH83TC3nHx2x+X1SZKUbefZvPkHZXmUpapycvkebVWUtN+X9zzGhLtLFrdArKbvScqs66xefElea6k3JdehJWkHLR5z6pSlBq/VydWp5ZiB7WPLhyk8ml4hx/ooafHkdt8as47bVqgdymtY7deKbt28Fs+s5fG3Xnb8TdAtXjpzQ52KSSO4V2R7m4yJLWdev+53uDezHYTY4mm6GqF5F3/dKfidktkN2lyG+KIsP702rbuoZYG0vLu8fbzZddouyv5KV/TMruhqa0bWy9GtwsrWgUVrMatqNolU2vpOA3NgzOAwyUqlM0ap+A0sWzraQpIk44avb9rJmaV+2XIbUulsBw8Eti5TbTEGTzABk0dOOE0X1yozI3dRL8mVmbM7/XNCZ0euKuvOEpE+Xzo7wHzmsSXdaN6uiyJdMMoYryhSNBVLE2fTuflafjt1ZppIQ7DtY/tE+NUIHdXCLCI7csyduKDTx7Z83vs1w/WhdK2nWLveYhzjWfJpvZI65GCb5ErnqsUSxBdk7ZAr0tJwcWDrULicXu3WXEranHpmoWKOu4sSrttV0510QT6/2ZxAnO1g2py6LkiLt+m8bovSEk8tefCeVHacqSJ0hsb9fPtGGbxta3LbvKC1Oc8Y4bNVM3zuldZYlKubUlzgCTlplR2cI/n3si64gXF/SNVBng7+rnQ9CG3TvZeZ4yxtzTQ9sV2UcK1cBtuWsX2zRsshbbG4mPB1UqOG8wqmLjqYYzBrR4KhrJV0/PlKkclmznEzlIusE/MFpoP68liQENrJLLs+0WKJslJrk/CJdnVTgscDFhMWjozqmtKxHznIFwq+gFn6S/aotBCWXY2zSHefeRLv6sS90qQy0Ji1eHaC8ZW2DI0TYB37ZmvAshegrCtuu0bwjGT/1Z3x2jQ0xreKgudq2hoouHArDJyUUWHX9hLw6fF9NBu8fC/npUfDttpNyfvZkjG6IHty8hA8U2bRH51OzZ4euJX0gW5cYdn2c7ssPlhuuXiiSKMvquzrQ0fbWGRjCn38ZeGfdlGtWpw4lycoAjp+DqObqsimfCey2zSSE/xaV/vPKOGfN7qCZ/MuopIkGaWTvOrZumUm77SVVdU1ruQ4ti3kCALBM0V1Qkf+2/pLlOlbtgkfs/hgpeOrq7rVPja2jZ/ZmvQ+FjlBqJpXp2W2je6bfaPwZbOgJbHvW9++tIiXZaxnUHDC1Osu6UAoaqHtGK3QopbMhnH8lQXPt5VSP8j8v9bGLjOFIGZXa93jdka6ttObX29oZWXuQzMdxtbFliJ4pqusOywbOrU1CB8lP/dYl8UHxnbV7XbIsrqJcILt1CfZdaP/v6yraWgEyn7mRs7CfSjhlsfnbpX5gtAZGTf05h1vumvs6OZsqXQsYra6i4JHP9d3jMXYapfll1RHdtX1qws89Dbe0Ksg29yr2wkInimRE1rRiWzi0EkZJ/n1ml1Hl+Qk0snMB+nMA3L1vJTTlZBWHZWNE0y8EJrFdm5lQ8Ds/oml313GJGwVjYesSTdvUeXcinrlhF/UpXu8EJzs56IAMGcJKB38l/e2YNwXpaZQKJHSgdv7FUkJnimQ0Cm60t+Rq/gmV0CL0lV2aJ4Q5SS/VPG6eWa6Lj6Q58wtIa/o31fTahXENMhrsBpDkAuFvGKLHeNKPi94hsbxs1JSsGHT2hmZF0MF092sS9BMK2CKnNVBGGsXmi2CxzGL0Cmr26+aQ+645FW6cIbGOMLmBOMWU5/5IE/fv7yuSUulqjWzUBAqaSum7Dmyy14XHe+2LfAuQmcoF0pW9/Eg3yn2izsVobNRFjrSfVG2tnues9K99kjaOpA18K80eNNp8cHAoiXiwsiDbWiDb1fkZdYKur6uGCfholAZGP9e1H12fFFTMk6kLG+yXq15jGzLDdhl341tKQ5YI3QmQ/A4oK/yKkJHz820nA0d/eXTgZMkyf6E90QoGdg8Cgy5e/2+ps8jxQdrcvU6LVG3dqZwYqu6mFgqOH5Hcp/JfMWMzIcSJkXBdDnT2ikqPhjatHTluRYz1Y5D+W89i8YDSqk7lVJvGI/HyXg8XpTCh6Lu5GGvZo/uWO+62oxKFnMq+SITn1gtpvC4oSorcyd121OSLBstn3Xpdms6J9glGVOKckoPnJDX2h6mNyFb7K50puyiEuxsF25R8Fjf6Cnfq7qt86JgvKHCU3ogFo2ZDbxZeiQEUQePnMTnjalYnN6FXhE6J8qVGwz+20jLfA+zg/FpRVCDqTxSF+Rql/Dpl5Ecu7rVu2XZXXhYcmzfcLKXWayLvqetzjCQed3lksKJ7OsOpBfibnXjTaJrzLRuIbR1HCxW96ta0bDtR9Fa9EVrgWzlrbkh/dZtbNtq3bV3WljNs5MVFCvWQ7JecjyzemX68GF9ovmi9zeFbbFdYn1grtZZ9h4yj6r1bdaNeQYLv9sdvv/Zkm3MXZ20YFsP5QbsqR5bvj9CbPFUXU1Mc5qTIwUtnap5o2ymGKmaL+tyk6oz456adCoPcwqQMvuytEHr4xFGl2iR/ZyfM/9u3hCYe/UsZeKrUxwoLvrMp1E4YXP8nZjGR+7b2bBoqed9BiOjpW3T0u+stSOhl7eNl0vGlPTvPJb5fzPpsgZSyIM8oSVlByuQTvrIrjqYbelsZVc2LXlfh5krp03phjCvMMu2t9Za9FP+DBeNm+nSBcK2JliNcpLHVNa8LzmWrVtzLW5LVS/Besnv2rZ60se+MQmr7Sqd+x2+96JelBOfg9F6rmqdle6zvj+4j2dyxy0wo6VzKFUz1mv766tuqfpZaDpH07TvazFm5DVbHguezPJc5pJUZLkeq2p7YbauDEsG3VWNVs+JVr+Mq9gslNZ6a8eYQSGvcGIkN12nsx2k48R1Cn7ulVkVol5NtIlEUjysjZ58qdp0wH3LmLgxrSare1/FnWlXjRykh12evEreu76be2rlzfIlrrvSom+cLjlcMjCvq7yc3itVUSRwX9nSAqq6kOaqXP3nVn5J6Ge7rLLe0sagvRQupIFf9l3fkQumSS+WRjKeSPGNIdTgsamkGWVmAt6yaUnkLNNc5U6XYwQlweP8ZJUl0/XYlNb6St8jMul0/keqpkWp2FeNxuomIVPhFM0WbXXSl/BZNsYGB9JdVXnSlUAoukF6o63xElnuwvXFUWsLEkYjxL5G6bYpGgvYzKsaq/n8tv3O40lfq8G2FW2H83GBgu2rqjr0+dHKOIIxdnMo41fmGF06ZUzZfsitlOz4c1sq2h6H21A0ZtLad6ylY++GsVdpQZWdM5x/nr4/gmzxqFfGE8z10lub0dmy6Z+63eXYis8tnpRczZfdi2FKlxk2p4bPThNfurRAwTZk90X639nxp5l04bC2Whkl3U47lmMElV1bXZAZMk58ZvrOfkevP5szi3qr+0LuW6t7Y/ZQPs/NshZcSU+M0y7cEAQbPCk5yc3KQH5r/ahFX8IsV19KY7u8D56UscR12n1lvU5N6CwW+SvjtPs2VbB89DSO8RuWjW75uW26g4dGleWW7TbIGG92YTrV1vhUTIIPnq5YjvXoO5qdViaVBE9r/eBoR9GJ3ILTVrRJtnnNuHK/InP7RUPCZ1UuCtKx4HQGj8EkISHPbS7t7vwcEQKCp4RFs9z5l7IkeJwPSKNak/Bx3cJAN9LF9Vi+4yRmpy63XHEXuU/9thzcHpKTzoKM79iw/TkE8NkTOvkInhJy0BS1aK5Oqd92mPP/Rp6v0d9rcpxUXcSknBcVAK4RPBWkoia7ONROybTtXcsLwjVuUPObMUV/WfgMCR70AWM8lqRiJZ3eo9UKugbbsigBtCiDoV5Vs6GY9Puv54wdnlibCYgVwQNMgVRNHpeZT+O+HWBaCB4AgFOM8QAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4BTBAwBwiuABADhF8AAAnCJ4AABOETwAAKcIHgCAUwQPAMApggcA4I5S6v8DjSCHRSEclC8AAAAASUVORK5CYII=" alt="JKA Armenia" />
-        <div class="footer-text">
+        <div class="footer-text" data-i18n-html="footer_brand_block">
           <strong style="color: var(--white); font-size: 0.85rem;">JKA Armenia</strong><br />
           Shotokan Karate-Do Federation<br />
           日本空手協会 アルメニア支部
         </div>
       </div>
       <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#features">Philosophy</a></li>
-        <li><a href="#classes">Classes</a></li>
-        <li><a href="#" onclick="openModal('gallery'); return false;">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#features" data-i18n="nav_philosophy">Philosophy</a></li>
+        <li><a href="#classes" data-i18n="nav_classes">Classes</a></li>
+        <li><a href="#" onclick="openModal('gallery'); return false;" data-i18n="nav_gallery_plain">Gallery</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
     </div>
-    <div class="footer-copy">
+    <div class="footer-copy" data-i18n="footer_copy">
       © 2025 JKA Armenia Shotokan Karate-Do Federation. Official affiliate of the Japan Karate Association.
       Osu! 押忍
     </div>
@@ -1752,11 +1800,11 @@
   <div class="modal-overlay" id="modal-gallery" onclick="closeModalOutside(event, 'gallery')">
     <div class="modal-box modal-box--gallery">
       <div class="modal-header">
-        <span class="modal-title">🖼️ Gallery</span>
+        <span class="modal-title" data-i18n="nav_gallery_icon">🖼️ Gallery</span>
         <button class="modal-close" onclick="closeModal('gallery')">✕</button>
       </div>
       <div class="modal-body">
-        <div class="modal-section-title">Photo Gallery</div>
+        <div class="modal-section-title" data-i18n="gallery_modal_title">Photo Gallery</div>
         <div class="gallery-grid" id="galleryGrid">
 
         <div class="gallery-item" onclick="openLightbox(0)">
@@ -1764,7 +1812,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Team photo — summer camp</div>
+          <div class="gallery-caption" data-i18n="gcap_1">Team photo — summer camp</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(1)">
@@ -1772,7 +1820,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA instructors — international seminar</div>
+          <div class="gallery-caption" data-i18n="gcap_2">With JKA instructors — international seminar</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(2)">
@@ -1780,7 +1828,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">JKA Armenia black belts — international training</div>
+          <div class="gallery-caption" data-i18n="gcap_3">JKA Armenia black belts — international training</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(3)">
@@ -1788,7 +1836,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA Sensei — Netherlands seminar</div>
+          <div class="gallery-caption" data-i18n="gcap_4">With JKA Sensei — Netherlands seminar</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(4)">
@@ -1796,7 +1844,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">JKA Armenia delegation — European seminar</div>
+          <div class="gallery-caption" data-i18n="gcap_5">JKA Armenia delegation — European seminar</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(5)">
@@ -1804,7 +1852,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Training session — Netherlands</div>
+          <div class="gallery-caption" data-i18n="gcap_6">Training session — Netherlands</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(6)">
@@ -1812,7 +1860,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Dojo session — Armenia</div>
+          <div class="gallery-caption" data-i18n="gcap_7">Dojo session — Armenia</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(7)">
@@ -1820,7 +1868,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA Sensei — Funakoshi dojo</div>
+          <div class="gallery-caption" data-i18n="gcap_8">With JKA Sensei — Funakoshi dojo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(8)">
@@ -1828,7 +1876,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">International competition — Armenia team</div>
+          <div class="gallery-caption" data-i18n="gcap_9">International competition — Armenia team</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(9)">
@@ -1836,7 +1884,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Armenia national team — international tournament</div>
+          <div class="gallery-caption" data-i18n="gcap_10">Armenia national team — international tournament</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(10)">
@@ -1844,7 +1892,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">JKA Nederland memorial weekend</div>
+          <div class="gallery-caption" data-i18n="gcap_11">JKA Nederland memorial weekend</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(11)">
@@ -1852,7 +1900,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA Sensei — international seminar</div>
+          <div class="gallery-caption" data-i18n="gcap_12">With JKA Sensei — international seminar</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(12)">
@@ -1860,7 +1908,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA Sensei — Netherlands</div>
+          <div class="gallery-caption" data-i18n="gcap_13">With JKA Sensei — Netherlands</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(13)">
@@ -1868,7 +1916,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">With JKA Grand Master — Netherlands</div>
+          <div class="gallery-caption" data-i18n="gcap_14">With JKA Grand Master — Netherlands</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(14)">
@@ -1876,7 +1924,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Sakura dojo — training session</div>
+          <div class="gallery-caption" data-i18n="gcap_15">Sakura dojo — training session</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(15)">
@@ -1884,7 +1932,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(16)">
@@ -1892,7 +1940,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(17)">
@@ -1900,7 +1948,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(18)">
@@ -1908,7 +1956,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(19)">
@@ -1916,7 +1964,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(20)">
@@ -1924,7 +1972,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(21)">
@@ -1932,7 +1980,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(22)">
@@ -1940,7 +1988,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(23)">
@@ -1948,7 +1996,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(24)">
@@ -1956,7 +2004,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(25)">
@@ -1965,7 +2013,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
           </div>
 
-          <div class="gallery-caption">Archive photo</div>
+          <div class="gallery-caption" data-i18n="gallery_archive">Archive photo</div>
         </div>
         </div>
       </div>
@@ -2083,6 +2131,364 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
+  </script>
+
+  <script>
+    // ============================================================
+    // LANGUAGE SWITCHER — EN / ՀԱՅ (Armenian) / РУС (Russian)
+    // ============================================================
+    const translations = {
+      en: {
+        page_title: "JKA Armenia – Shotokan Karate-Do Federation",
+        brand_subtitle: "Shotokan Karate-Do",
+        nav_about: "About",
+        nav_philosophy: "Philosophy",
+        nav_classes: "Classes",
+        nav_gallery_icon: "🖼️ Gallery",
+        nav_gallery_plain: "Gallery",
+        nav_contact: "Contact",
+        hero_eyebrow: "一般社団法人 日本空手協会 · Armenia",
+        hero_title: 'The Way of<br/>\n          <em>Empty Hand</em>',
+        hero_subtitle: "Official affiliate of the Japan Karate Association. Training body, sharpening mind, and cultivating character through the art of Shotokan Karate-Do in Armenia since 1993.",
+        hero_cta1: "Begin Training →",
+        hero_cta2: "Learn More",
+        stat_years: "Years Active",
+        stat_students: "Students",
+        stat_blackbelts: "Black Belts",
+        stat_certified: "Certified",
+        about_label: "Who We Are",
+        about_title: "Rooted in Tradition.<br/>Forged in Armenia.",
+        about_p1: "The JKA Armenia Shotokan Karate-Do Federation is the official representative of the Japan Karate Association (JKA) in Armenia. Founded with a commitment to preserving the authentic lineage of Shotokan as developed by Master Gichin Funakoshi, we bring world-class instruction to practitioners across the country.",
+        about_p2: "Our federation operates multiple dojos throughout Yerevan and the regions, offering structured programs for children, adults, and competitive athletes. Every instructor is JKA-certified and trained in Japan, ensuring the highest standards of technique and ethical conduct are upheld in every class.",
+        about_p3: "We believe karate is not merely a sport—it is a lifelong path of self-discovery, discipline, and respect. Whether you step on the floor for the first time or compete at the national level, JKA Armenia walks that path with you.",
+        about_cta: "Join the Dojo →",
+        dojokun_title: "Dojo Kun — 道場訓",
+        dojokun_1: "Seek perfection of character",
+        dojokun_2: "Be faithful and sincere",
+        dojokun_3: "Endeavor to excel",
+        dojokun_4: "Respect others",
+        dojokun_5: "Refrain from violent behavior",
+        features_label: "What We Offer",
+        features_title: "Three Pillars of Practice",
+        feature1_title: "Kihon — 基本",
+        feature1_desc: "Fundamentals are the foundation of everything. We drill stances, blocks, strikes, and kicks with precision and repetition, building muscle memory that lasts a lifetime.",
+        feature2_title: "Kata — 型",
+        feature2_desc: "The living library of karate. Each of the 26 JKA kata encodes centuries of combat wisdom. Through kata practice, students learn bunkai, timing, and the essence of the art.",
+        feature3_title: "Kumite — 組手",
+        feature3_desc: "Controlled sparring tests everything learned in kihon and kata against a resisting partner. From basic ippon kumite to free-sparring, students develop courage, strategy, and composure under pressure.",
+        feature4_title: "Competition",
+        feature4_desc: "JKA Armenia fields competitive teams at national and international tournaments. Athletes receive specialized coaching in both kata and kumite divisions under WKF-approved rules.",
+        feature5_title: "Children's Program",
+        feature5_desc: "A structured curriculum designed for ages 5–14 focuses on coordination, confidence, focus, and respect—qualities that extend far beyond the dojo into school and everyday life.",
+        feature6_title: "JKA Certification",
+        feature6_desc: "All grades from 9th kyu to 1st dan and above are recognized by JKA Headquarters in Tokyo. Your rank travels with you—accepted worldwide within the JKA network.",
+        classes_label: "Training Programs",
+        classes_title: "Find Your Class",
+        class1_title: "Children's Karate",
+        class1_level: "Ages 5–14 · All Levels",
+        class1_time: "Mon / Wed / Fri — 17:00–18:00",
+        class1_info: "Focus on discipline, coordination, and fun. No prior experience needed.",
+        loc_main_dojo: "Main Dojo, Yerevan",
+        class2_title: "Adult Beginners",
+        class2_level: "Ages 15+ · White to Yellow Belt",
+        class2_time: "Tue / Thu — 19:00–20:30",
+        class2_info: "Kihon foundations, basic kata, and safe partner drills.",
+        class3_title: "Advanced & Competition",
+        class3_level: "Green Belt+ · Competitors",
+        class3_time: "Mon / Wed / Fri — 19:00–21:00",
+        class3_location: "Competition Dojo, Yerevan",
+        class3_info: "Advanced kata, full kumite, and tournament preparation.",
+        contact_label: "Get In Touch",
+        contact_title: "Start Your Journey Today",
+        contact_intro: "Whether you're curious about classes, grading exams, or want to bring JKA Shotokan to your school or community — we'd love to hear from you.",
+        contact_loc_label: "Location",
+        contact_loc_value: "Yerevan, Republic of Armenia",
+        contact_email_label: "Email",
+        contact_phone_label: "Phone",
+        contact_affil_label: "Affiliation",
+        contact_affil_value: "Japan Karate Association (JKA) — Official Member",
+        form_fname: "First Name",
+        form_lname: "Last Name",
+        form_email: "Email",
+        form_interest: "I'm Interested In",
+        opt_select: "— Select —",
+        opt_children: "Children's Program",
+        opt_adults: "Adult Beginners",
+        opt_advanced: "Advanced / Competition",
+        opt_private: "Private Lessons",
+        opt_corporate: "Corporate / School Program",
+        opt_other: "Other",
+        form_message: "Message",
+        form_submit: "Send Message →",
+        ph_message: "Tell us a bit about yourself…",
+        footer_brand_block: '<strong style="color: var(--white); font-size: 0.85rem;">JKA Armenia</strong><br />\n          Shotokan Karate-Do Federation<br />\n          日本空手協会 アルメニア支部',
+        footer_copy: "© 2025 JKA Armenia Shotokan Karate-Do Federation. Official affiliate of the Japan Karate Association. Osu! 押忍",
+        gallery_modal_title: "Photo Gallery",
+        gallery_archive: "Archive photo",
+        gcap_1: "Team photo — summer camp",
+        gcap_2: "With JKA instructors — international seminar",
+        gcap_3: "JKA Armenia black belts — international training",
+        gcap_4: "With JKA Sensei — Netherlands seminar",
+        gcap_5: "JKA Armenia delegation — European seminar",
+        gcap_6: "Training session — Netherlands",
+        gcap_7: "Dojo session — Armenia",
+        gcap_8: "With JKA Sensei — Funakoshi dojo",
+        gcap_9: "International competition — Armenia team",
+        gcap_10: "Armenia national team — international tournament",
+        gcap_11: "JKA Nederland memorial weekend",
+        gcap_12: "With JKA Sensei — international seminar",
+        gcap_13: "With JKA Sensei — Netherlands",
+        gcap_14: "With JKA Grand Master — Netherlands",
+        gcap_15: "Sakura dojo — training session"
+      },
+      hy: {
+        page_title: "JKA Armenia – Շոտոկան կարատե-դոյի ֆեդերացիա",
+        brand_subtitle: "Շոտոկան կարատե-դո",
+        nav_about: "Մեր մասին",
+        nav_philosophy: "Փիլիսոփայություն",
+        nav_classes: "Պարապմունքներ",
+        nav_gallery_icon: "🖼️ Պատկերասրահ",
+        nav_gallery_plain: "Պատկերասրահ",
+        nav_contact: "Կապ",
+        hero_eyebrow: "一般社団法人 日本空手協会 · Հայաստան",
+        hero_title: 'Դատարկ ափի<br/>\n          <em>ուղին</em>',
+        hero_subtitle: "Ճապոնիայի կարատե ասոցիացիայի պաշտոնական մասնաճյուղը։ Մարմնի մարզում, մտքի սրացում և բնավորության կուլտիվացում Շոտոկան կարատե-դոյի արվեստի միջոցով Հայաստանում՝ 1993 թվականից ի վեր։",
+        hero_cta1: "Սկսել մարզումը →",
+        hero_cta2: "Իմանալ ավելին",
+        stat_years: "Տարիների փորձ",
+        stat_students: "Սովորողներ",
+        stat_blackbelts: "Սև գոտիներ",
+        stat_certified: "Հավաստագրված",
+        about_label: "Ով ենք մենք",
+        about_title: "Արմատավորված ավանդույթում։<br/>Կռված Հայաստանում։",
+        about_p1: "JKA Armenia Շոտոկան կարատե-դոյի ֆեդերացիան Ճապոնիայի կարատե ասոցիացիայի (JKA) պաշտոնական ներկայացուցիչն է Հայաստանում։ Հիմնադրված է Գիչին Ֆունակոշի վարպետի կողմից մշակված Շոտոկանի իսկական ժառանգականությունը պահպանելու հանձնառությամբ, մենք երկրի ողջ տարածքում մարտարվեստագետներին ապահովում ենք համաշխարհային մակարդակի ուսուցմամբ։",
+        about_p2: "Մեր ֆեդերացիան գործում է մի քանի դոջոներով Երևանում և մարզերում՝ առաջարկելով կառուցված ծրագրեր երեխաների, մեծահասակների և մրցութային մարզիկների համար։ Յուրաքանչյուր մարզիչ JKA-հավաստագրված է և մարզված Ճապոնիայում, ինչը ապահովում է տեխնիկայի և էթիկական վարքագծի ամենաբարձր ստանդարտները յուրաքանչյուր պարապմունքում։",
+        about_p3: "Մենք հավատում ենք, որ կարատեն ոչ միայն սպորտ է, այլ ինքնաբացահայտման, կարգապահության և հարգանքի կենդանի ուղի։ Անկախ նրանից՝ դուք առաջին անգամ եք կանգնում տատամիի վրա, թե մրցում եք ազգային մակարդակում, JKA Armenia-ն այդ ուղին անցնում է ձեզ հետ։",
+        about_cta: "Միանալ դոջոյին →",
+        dojokun_title: "Դոջո կուն — 道場訓",
+        dojokun_1: "Ձգտել կատարելագործել բնավորությունը",
+        dojokun_2: "Լինել հավատարիմ և անկեղծ",
+        dojokun_3: "Ջանադրաբար գերազանցել",
+        dojokun_4: "Հարգել ուրիշներին",
+        dojokun_5: "Հրաժարվել կոպիտ վարքագծից",
+        features_label: "Ինչ ենք առաջարկում",
+        features_title: "Մարզման երեք հիմնասյունները",
+        feature1_title: "Կիհոն — 基本",
+        feature1_desc: "Հիմունքները ամեն ինչի հիմքն են։ Մենք մարզում ենք կանգառները, արգելափակումները, հարվածները և ոտնահարվածները ճշտությամբ և կրկնությամբ, կառուցելով մկանային հիշողություն, որը տևում է ողջ կյանք։",
+        feature2_title: "Կատա — 型",
+        feature2_desc: "Կարատեի կենդանի գրադարանը։ JKA-ի 26 կատաներից յուրաքանչյուրը պարունակում է դարավոր մարտական իմաստություն։ Կատայի մարզման միջոցով սովորողները սովորում են բունկայ, ժամանակավորում և արվեստի էությունը։",
+        feature3_title: "Կումիտե — 組手",
+        feature3_desc: "Կառավարվող մարտը փորոքում է այն ամենը, ինչ սովորել եք կիհոնում և կատայում, դիմադրող զուգընկերի դեմ։ Հիմնական իպպոն կումիտեից մինչև ազատ մարտ, սովորողները զարգացնում են քաջություն, ստրատեգիա և հանգստություն ճնշման տակ։",
+        feature4_title: "Մրցույթ",
+        feature4_desc: "JKA Armenia-ն մրցութային թիմեր է ներկայացնում ազգային և միջազգային մրցույթներում։ Մարզիկները ստանում են մասնագիտացված մարզում թե՛ կատայի, թե՛ կումիտեի բաժիններում՝ WKF-ի հաստատված կանոնների համաձայն։",
+        feature5_title: "Մանկական ծրագիր",
+        feature5_desc: "5-14 տարեկանների համար նախատեսված կառուցված ուսումնական ծրագիրը կենտրոնանում է կոորդինացիայի, վստահության, կենտրոնացման և հարգանքի վրա՝ որակներ, որոնք տարածվում են դոջոյից շատ հեռու՝ դպրոց և ամենօրյա կյանք։",
+        feature6_title: "JKA հավաստագրում",
+        feature6_desc: "9-րդ կյուից մինչև 1-ին դան և ավելի բարձր բոլոր աստիճանները ճանաչված են JKA-ի կենտրոնակայանի կողմից Տոկիոյում։ Ձեր աստիճանը ճանապարհորդում է ձեզ հետ՝ ընդունված ողջ աշխարհում JKA ցանցի շրջանակում։",
+        classes_label: "Մարզման ծրագրեր",
+        classes_title: "Գտեք ձեր խումբը",
+        class1_title: "Մանկական կարատե",
+        class1_level: "5–14 տարեկան · Բոլոր մակարդակները",
+        class1_time: "Երկ / Չոր / Ուրբ — 17:00–18:00",
+        class1_info: "Կենտրոնացում կարգապահության, համակարգման և զվարճության վրա։ Նախնական փորձ պետք չէ։",
+        loc_main_dojo: "Հիմնական դոջո, Երևան",
+        class2_title: "Մեծահասակների սկսնակների խումբ",
+        class2_level: "15+ տարեկան · Սպիտակից մինչև դեղին գոտի",
+        class2_time: "Երեք / Հինգ — 19:00–20:30",
+        class2_info: "Կիհոնի հիմունքներ, հիմնական կատա և անվտանգ զուգընկերային վարժություններ։",
+        class3_title: "Առավելագույն մակարդակ և մրցույթ",
+        class3_level: "Կանաչ գոտուց բարձր · Մրցողներ",
+        class3_time: "Երկ / Չոր / Ուրբ — 19:00–21:00",
+        class3_location: "Մրցութային դոջո, Երևան",
+        class3_info: "Բարձր մակարդակի կատա, ամբողջական կումիտե և մրցույթին նախապատրաստում։",
+        contact_label: "Կապ հաստատեք",
+        contact_title: "Սկսեք ձեր ուղին այսօր",
+        contact_intro: "Անկախ նրանից՝ հետաքրքրված եք պարապմունքներով, քննություններով, թե ցանկանում եք բերել JKA Շոտոկանը ձեր դպրոց կամ համայնք — մենք կուրախանանք լսել ձեզ։",
+        contact_loc_label: "Հասցե",
+        contact_loc_value: "Երևան, Հայաստանի Հանրապետություն",
+        contact_email_label: "Էլ. փոստ",
+        contact_phone_label: "Հեռախոս",
+        contact_affil_label: "Անդամակցություն",
+        contact_affil_value: "Ճապոնիայի կարատե ասոցիացիա (JKA) — Պաշտոնական անդամ",
+        form_fname: "Անուն",
+        form_lname: "Ազգանուն",
+        form_email: "Էլ. փոստ",
+        form_interest: "Հետաքրքրված եմ",
+        opt_select: "— Ընտրեք —",
+        opt_children: "Մանկական ծրագիր",
+        opt_adults: "Մեծահասակների սկսնակների խումբ",
+        opt_advanced: "Առավելագույն մակարդակ / Մրցույթ",
+        opt_private: "Անհատական պարապմունքներ",
+        opt_corporate: "Կորպորատիվ / Դպրոցական ծրագիր",
+        opt_other: "Այլ",
+        form_message: "Հաղորդագրություն",
+        form_submit: "Ուղարկել →",
+        ph_message: "Պատմեք մեզ ձեր մասին…",
+        footer_brand_block: '<strong style="color: var(--white); font-size: 0.85rem;">JKA Armenia</strong><br />\n          Շոտոկան կարատե-դոյի ֆեդերացիա<br />\n          日本空手協会 アルメニア支部',
+        footer_copy: "© 2025 JKA Armenia Շոտոկան կարատե-դոյի ֆեդերացիա։ Ճապոնիայի կարատե ասոցիացիայի պաշտոնական մասնաճյուղ։ Օսու! 押忍",
+        gallery_modal_title: "Լուսանկարների պատկերասրահ",
+        gallery_archive: "Արխիվային լուսանկար",
+        gcap_1: "Թիմային լուսանկար — ամառային ճամբար",
+        gcap_2: "JKA մարզիչների հետ — միջազգային սեմինար",
+        gcap_3: "JKA Armenia սև գոտիներ — միջազգային մարզում",
+        gcap_4: "JKA Սենսեյի հետ — Նիդեռլանդների սեմինար",
+        gcap_5: "JKA Armenia պատվիրակություն — եվրոպական սեմինար",
+        gcap_6: "Մարզման պարապմունք — Նիդեռլանդներ",
+        gcap_7: "Դոջոյի պարապմունք — Հայաստան",
+        gcap_8: "JKA Սենսեյի հետ — Ֆունակոշի դոջո",
+        gcap_9: "Միջազգային մրցույթ — Հայաստանի թիմ",
+        gcap_10: "Հայաստանի ազգային թիմ — միջազգային մրցաշար",
+        gcap_11: "JKA Nederland հիշատակի հանգստյան օրեր",
+        gcap_12: "JKA Սենսեյի հետ — միջազգային սեմինար",
+        gcap_13: "JKA Սենսեյի հետ — Նիդեռլանդներ",
+        gcap_14: "JKA Մեծ վարպետի հետ — Նիդեռլանդներ",
+        gcap_15: "Սակուրա դոջո — մարզման պարապմունք"
+      },
+      ru: {
+        page_title: "JKA Armenia – Федерация Шотокан Карате-До",
+        brand_subtitle: "Шотокан карате-до",
+        nav_about: "О нас",
+        nav_philosophy: "Философия",
+        nav_classes: "Занятия",
+        nav_gallery_icon: "🖼️ Галерея",
+        nav_gallery_plain: "Галерея",
+        nav_contact: "Контакты",
+        hero_eyebrow: "一般社団法人 日本空手協会 · Армения",
+        hero_title: 'Путь<br/>\n          <em>пустой руки</em>',
+        hero_subtitle: "Официальный филиал Японской ассоциации карате. Тренировка тела, развитие разума и воспитание характера через искусство Шотокан Карате-До в Армении с 1993 года.",
+        hero_cta1: "Начать тренировки →",
+        hero_cta2: "Узнать больше",
+        stat_years: "Лет работы",
+        stat_students: "Учеников",
+        stat_blackbelts: "Чёрных поясов",
+        stat_certified: "Сертифицировано",
+        about_label: "Кто мы",
+        about_title: "Корни в традиции.<br/>Закалены в Армении.",
+        about_p1: "Федерация JKA Armenia Шотокан Карате-До является официальным представителем Японской ассоциации карате (JKA) в Армении. Основанная с приверженностью сохранению подлинной линии Шотокан, разработанной мастером Гичином Фунакоши, мы предоставляем практикующим по всей стране обучение мирового уровня.",
+        about_p2: "Наша федерация работает в нескольких додзё по Еревану и регионам, предлагая структурированные программы для детей, взрослых и спортсменов-соревнователей. Каждый инструктор сертифицирован JKA и обучен в Японии, что обеспечивает высочайшие стандарты техники и этического поведения на каждом занятии.",
+        about_p3: "Мы верим, что карате — это не просто спорт, а путь самопознания, дисциплины и уважения на всю жизнь. Будь вы новичок, впервые ступивший на татами, или спортсмен национального уровня, JKA Armenia пройдёт этот путь вместе с вами.",
+        about_cta: "Присоединиться к додзё →",
+        dojokun_title: "Додзё кун — 道場訓",
+        dojokun_1: "Стремиться к совершенствованию характера",
+        dojokun_2: "Быть искренним",
+        dojokun_3: "Прилагать все усилия",
+        dojokun_4: "Уважать других",
+        dojokun_5: "Воздерживаться от насилия",
+        features_label: "Что мы предлагаем",
+        features_title: "Три столпа практики",
+        feature1_title: "Кихон — 基本",
+        feature1_desc: "Основы — это фундамент всего. Мы отрабатываем стойки, блоки, удары руками и ногами с точностью и повторением, формируя мышечную память на всю жизнь.",
+        feature2_title: "Ката — 型",
+        feature2_desc: "Живая библиотека карате. Каждое из 26 ката JKA хранит вековую боевую мудрость. Через практику ката ученики изучают бункай, тайминг и суть искусства.",
+        feature3_title: "Кумитэ — 組手",
+        feature3_desc: "Контролируемый спарринг проверяет всё, что выучено в кихон и ката, против сопротивляющегося партнёра. От базового иппон-кумитэ до свободного спарринга ученики развивают смелость, стратегию и спокойствие под давлением.",
+        feature4_title: "Соревнования",
+        feature4_desc: "JKA Armenia выставляет соревновательные команды на национальных и международных турнирах. Спортсмены получают специализированную подготовку как по ката, так и по кумитэ, по правилам, одобренным WKF.",
+        feature5_title: "Детская программа",
+        feature5_desc: "Структурированная программа для детей 5–14 лет развивает координацию, уверенность, концентрацию и уважение — качества, которые выходят далеко за пределы додзё, в школу и повседневную жизнь.",
+        feature6_title: "Сертификация JKA",
+        feature6_desc: "Все степени от 9-го кю до 1-го дана и выше признаются штаб-квартирой JKA в Токио. Ваш ранг путешествует с вами — признан по всему миру в сети JKA.",
+        classes_label: "Программы тренировок",
+        classes_title: "Найдите свой класс",
+        class1_title: "Детское карате",
+        class1_level: "5–14 лет · Все уровни",
+        class1_time: "Пн / Ср / Пт — 17:00–18:00",
+        class1_info: "Акцент на дисциплине, координации и удовольствии. Опыт не требуется.",
+        loc_main_dojo: "Главное додзё, Ереван",
+        class2_title: "Взрослые новички",
+        class2_level: "15+ лет · От белого до жёлтого пояса",
+        class2_time: "Вт / Чт — 19:00–20:30",
+        class2_info: "Основы кихон, базовые ката и безопасные парные упражнения.",
+        class3_title: "Продвинутый уровень и соревнования",
+        class3_level: "От зелёного пояса · Спортсмены",
+        class3_time: "Пн / Ср / Пт — 19:00–21:00",
+        class3_location: "Соревновательное додзё, Ереван",
+        class3_info: "Продвинутые ката, полноценное кумитэ и подготовка к турнирам.",
+        contact_label: "Связаться с нами",
+        contact_title: "Начните свой путь сегодня",
+        contact_intro: "Интересуетесь ли вы занятиями, экзаменами на пояс, или хотите привнести JKA Шотокан в вашу школу или сообщество — мы будем рады услышать от вас.",
+        contact_loc_label: "Местоположение",
+        contact_loc_value: "Ереван, Республика Армения",
+        contact_email_label: "Эл. почта",
+        contact_phone_label: "Телефон",
+        contact_affil_label: "Принадлежность",
+        contact_affil_value: "Японская ассоциация карате (JKA) — Официальный член",
+        form_fname: "Имя",
+        form_lname: "Фамилия",
+        form_email: "Эл. почта",
+        form_interest: "Меня интересует",
+        opt_select: "— Выберите —",
+        opt_children: "Детская программа",
+        opt_adults: "Взрослые новички",
+        opt_advanced: "Продвинутый уровень / Соревнования",
+        opt_private: "Индивидуальные занятия",
+        opt_corporate: "Корпоративная / Школьная программа",
+        opt_other: "Другое",
+        form_message: "Сообщение",
+        form_submit: "Отправить →",
+        ph_message: "Расскажите немного о себе…",
+        footer_brand_block: '<strong style="color: var(--white); font-size: 0.85rem;">JKA Armenia</strong><br />\n          Федерация Шотокан Карате-До<br />\n          日本空手協会 アルメニア支部',
+        footer_copy: "© 2025 JKA Armenia Федерация Шотокан Карате-До. Официальный филиал Японской ассоциации карате. Осу! 押忍",
+        gallery_modal_title: "Фотогалерея",
+        gallery_archive: "Архивное фото",
+        gcap_1: "Командное фото — летний лагерь",
+        gcap_2: "С инструкторами JKA — международный семинар",
+        gcap_3: "Чёрные пояса JKA Armenia — международная тренировка",
+        gcap_4: "С Сэнсэем JKA — семинар в Нидерландах",
+        gcap_5: "Делегация JKA Armenia — европейский семинар",
+        gcap_6: "Тренировочное занятие — Нидерланды",
+        gcap_7: "Занятие в додзё — Армения",
+        gcap_8: "С Сэнсэем JKA — додзё Фунакоши",
+        gcap_9: "Международные соревнования — команда Армении",
+        gcap_10: "Национальная команда Армении — международный турнир",
+        gcap_11: "Памятные выходные JKA Nederland",
+        gcap_12: "С Сэнсэем JKA — международный семинар",
+        gcap_13: "С Сэнсэем JKA — Нидерланды",
+        gcap_14: "С Грандмастером JKA — Нидерланды",
+        gcap_15: "Додзё Сакура — тренировочное занятие"
+      }
+    };
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.en;
+      const fallback = translations.en;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = dict[key] !== undefined ? dict[key] : fallback[key];
+        if (val !== undefined) el.textContent = val;
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        const val = dict[key] !== undefined ? dict[key] : fallback[key];
+        if (val !== undefined) el.innerHTML = val;
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const val = dict[key] !== undefined ? dict[key] : fallback[key];
+        if (val !== undefined) el.setAttribute('placeholder', val);
+      });
+
+      document.title = dict.page_title || fallback.page_title;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+
+    function setLanguage(lang) {
+      try { localStorage.setItem('jka_lang', lang); } catch (e) {}
+      applyLanguage(lang);
+    }
+
+    (function initLanguage() {
+      let saved = 'en';
+      try { saved = localStorage.getItem('jka_lang') || 'en'; } catch (e) {}
+      applyLanguage(saved);
+    })();
   </script>
 
 </body>
